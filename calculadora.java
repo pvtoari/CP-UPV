@@ -1,56 +1,40 @@
+import java.util.*;
+
 public class calculadora {
     public static void main(String[] args) {
-        java.util.Scanner kbd = new java.util.Scanner(System.in);
+        Scanner kbd = new Scanner(System.in);
+        String[] terms;
+        String input = kbd.nextLine(), toBeParsed1 = "", toBeParsed2 = "";
+        int vacio1=0, vacio2=0;
+        long a,b;
 
-        String input = kbd.nextLine();
-        kbd.close();
-
-        boolean sum = false, rest = false, mult = false, div = false;
-        String ops = "+-*/"; int mempos = 0;
-        double a = 0, b = 0;
-
-        for(int i = 0; i < input.length(); i++) {
-            int temp = input.charAt(i);
-            for(int j = 0; j < ops.length(); j++) {
-                if(temp == ops.charAt(j) && i != 0) {
-                    mempos = i;
-                    i = input.length();
-                }
+        terms = input.split("");
+        vacio1= input.indexOf(" ");
+        vacio2= vacio1 + 2;
+        for(int i = 0; i < terms.length; i++) {
+            if(0<= i && i<=vacio1-1) {
+                toBeParsed1+=terms[i];
+            }
+            if(vacio2+1<= i && i<=terms.length-1) {
+                toBeParsed2+=terms[i];
             }
         }
 
-        if(input.charAt(mempos) == ops.charAt(0)) {
-            sum = true;
-        } else if(input.charAt(mempos) == ops.charAt(1)) {
-            rest = true;
-        } else if(input.charAt(mempos) == ops.charAt(2)) {
-            mult = true;
-        } else if(input.charAt(mempos) == ops.charAt(3)) {
-            div = true;
-        }
+        a = Long.parseLong(toBeParsed1);
+        b = Long.parseLong(toBeParsed2);
 
-        a = Integer.parseInt(input.substring(0, mempos-1));
-        b = Integer.parseInt(input.substring(mempos+2));
-        //System.out.println(a + ", " + mempos + ", " + b);
-
-        if(sum) {
+        if(terms[vacio1+1].equals("+")) {
             System.out.println(a+b);
-        } else if(rest) {
+        } else if(terms[vacio1+1].equals("-")) {
             System.out.println(a-b);
-        } else if(mult) {
+        } else if(terms[vacio1+1].equals("*")) {
             System.out.println(a*b);
-        } else if(div) {
-            if(b == 0) {
-                System.out.println("ERROR");
-            } else {
-                System.out.println(Math.round(((double) a / b)*100d)/100d);
-            }
+        } else if(terms[vacio1+1].equals("/") && b!= 0) {
+            double a2 = (double) a;
+            double b2 = (double) b;
+            System.out.printf(Locale.ENGLISH, "%.2f", a2/b2);
+        } else {
+            System.out.println("ERROR");
         }
-
-        //System.out.println((double) 44456*789846545);
-    }
-
-    public static char toChar(String s) {
-        return s.charAt(0);
     }
 }
