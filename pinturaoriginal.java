@@ -11,7 +11,7 @@ public class pinturaoriginal {
 
         char pintao = "#".charAt(0);
         ArrayList<pareja> chivato = new ArrayList<>();
-        String[][] cuadro = new String[n][n];
+        String[][] cuadro = new String[n][m];
 
         for(int i = 0; i < n; i++) {
             String input = kbd.next();
