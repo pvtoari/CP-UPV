@@ -22,20 +22,12 @@ public class tetragravedad {
             }
         }
         
-        /*chivato.forEach((pareja p) -> {
-            System.out.println("pene");
-            for(int i = 0; i < n; i++) {
-                mesa[p.i][i] = "#";
-            }
-        }
-        );
-        */
-    
-        for(int i = 0; i < chivato.size(); i++) {
-            System.out.println("debug");
-            pareja p = chivato.get(i);
-            for(int j = 0; j < n; i++) {
+        for(pareja p : chivato) {
+            for(int j = 0; j < m; j++) {
                 mesa[p.i][j] = "#";
+            }
+            for(int j = 0; j < n; j++) {
+                mesa[j][p.j] = "#";
             }
         }
 
