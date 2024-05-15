@@ -25,9 +25,26 @@ public class pigeonholesort {
             }
         }
 
-        int[] aux = new int[max-min+1];
-        for(int i = 0; i < aux.length; i++) {
-            aux[i]=i+min;
+        int offset = max-min+1;
+        int[] aux = new int[offset];
+        
+        for(int i = 0; i < n; i++) {
+            aux[nums[i]-min]++;
+        }
+
+        String res = "";
+        res += min;
+        int k = 0;
+        for(int i = 0; i<max; i++) {
+            k=0;
+            if(aux[i]==1) {
+                res += " " + i;
+            } else if(aux>1) {
+                while(k<aux[i]) {
+                    res += " " + i;
+                    k++;
+                }
+            }
         }
 
         printArray(aux);
